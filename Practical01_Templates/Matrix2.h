@@ -27,11 +27,10 @@ public:
 	// binary addition
 	template <typename U>
 	Matrix2<T> operator+ ( Matrix2<U> & const other) {
-		Matrix2<T> curr = *this;
-		return Matrix2<T>(curr.m_11 + other.m_11,
-						  curr.m_12 + other.m_12,
-						  curr.m_21 + other.m_21,
-						  curr.m_22 + other.m_22)
+		return Matrix2<T>(m_11 + other.m_11,
+						  m_12 + other.m_12,
+						  m_21 + other.m_21,
+						  m_22 + other.m_22)
 	}
 
 	// unary multiplication
@@ -48,11 +47,10 @@ public:
 	// binary multiplication
 	template <typename U>
 	Matrix2<T> operator* (Matrix2<U> & const other) {
-		Matrix2<T> curr = *this;
-		return Matrix2<T>(curr.m_11 * other.m_11 + curr.m_12 * other.m_21,
-						  curr.m_11 * other.m_12 + curr.m_12 * other.m_22,
-						  curr.m_21 * other.m_11 + curr.m_22 * other.m_21,
-						  curr.m_21 * other.m_12 + curr.m_22 * other.m_22);
+		return Matrix2<T>(m_11 * other.m_11 + m_12 * other.m_21,
+						  m_11 * other.m_12 + m_12 * other.m_22,
+						  m_21 * other.m_11 + m_22 * other.m_21,
+						  m_21 * other.m_12 + m_22 * other.m_22);
 	}
 
 	// multiplication with a vector
@@ -61,6 +59,17 @@ public:
 		return Vector2<U>(m_11 * v.x + m_12 * v.y, m_21 * v.x + m_22 * v.y);
 	}
 
+	// assignment
+	template <typename U>
+	Matrix2<T> operator= (Matrix2<U> & const other) {
+		m_11 = other.m_11;
+		m_12 = other.m_12;
+		m_21 = other.m_21;
+		m_22 = other.m_22;
+		return *this;
+	}
+
+	// returns a rotation matrix
 	template <typename U>
 	static Matrix2<double> rotate(U angle){
 		return Matrix2<double>(std::cos(angle), -std::sin(angle), std::sin(angle), std::cos(angle));

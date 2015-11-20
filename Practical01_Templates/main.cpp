@@ -15,6 +15,7 @@ int main() {
 
 	printRotations(matrixInt, vectorInt);
 	printRotations(matrixDouble, vectorFloat);
+	printRotations(matrixDouble * matrixInt, vectorFloat * 2);
 	
 	system("PAUSE");
 }
